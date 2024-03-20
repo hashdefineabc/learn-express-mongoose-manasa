@@ -14,17 +14,6 @@ function get_book_dtl(id) {
 }
 
 exports.show_all_books_status = async function(res) {
-  //return res.send([]);
-  const results = await Promise.all([get_book(id).exec(), get_book_dtl(id).exec()])
-  try {
-    let book = await results[0];
-    let bookInstance = await results[1];
-    res.send({
-      title: book.title,
-      status: bookInstance.status,
-    });
-  }
-  catch(err) {
-    res.send(`Book ${id} not found`);
-  } 
+  console.log("Test", BookInstance.find({status: 'Available'}))
+  return res.send(await BookInstance.find({status: 'Available'}).exec());
 }
